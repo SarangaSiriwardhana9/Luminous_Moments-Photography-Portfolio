@@ -1,4 +1,4 @@
-# Hasaranga Photography Portfolio 📸
+# Photography Portfolio 📸
 
 A modern and responsive photography portfolio website built using **Next.js**, **TypeScript**, **Tailwind CSS**, **Shadcn UI**, and **Framer Motion**. This site showcases professional photography services including weddings, engagements, cultural events, corporate shoots, and more — tailored for a Sri Lankan audience.
 
