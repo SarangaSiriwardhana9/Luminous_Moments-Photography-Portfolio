@@ -2,6 +2,7 @@ import Link from "next/link"
 import { InstagramIcon, FacebookIcon, TwitterIcon, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { ROUTES, CONTACT } from "@/constants"
 
 export function Footer() {
   return (
@@ -16,17 +17,17 @@ export function Footer() {
           </p>
           <div className="flex gap-4">
             <Button size="icon" variant="ghost" asChild>
-              <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <Link href={CONTACT.SOCIAL.INSTAGRAM} target="_blank" aria-label="Instagram">
                 <InstagramIcon className="h-5 w-5" />
               </Link>
             </Button>
             <Button size="icon" variant="ghost" asChild>
-              <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <Link href={CONTACT.SOCIAL.FACEBOOK} target="_blank" aria-label="Facebook">
                 <FacebookIcon className="h-5 w-5" />
               </Link>
             </Button>
             <Button size="icon" variant="ghost" asChild>
-              <Link href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <Link href={CONTACT.SOCIAL.TWITTER} target="_blank" aria-label="Twitter">
                 <TwitterIcon className="h-5 w-5" />
               </Link>
             </Button>
@@ -36,22 +37,22 @@ export function Footer() {
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Quick Links</h3>
           <nav className="flex flex-col gap-2">
-            <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.HOME} className="text-muted-foreground hover:text-foreground transition-colors">
               Home
             </Link>
-            <Link href="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.PORTFOLIO} className="text-muted-foreground hover:text-foreground transition-colors">
               Portfolio
             </Link>
-            <Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES} className="text-muted-foreground hover:text-foreground transition-colors">
               Services & Packages
             </Link>
-            <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-foreground transition-colors">
               About Hasaranga
             </Link>
-            <Link href="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.TESTIMONIALS} className="text-muted-foreground hover:text-foreground transition-colors">
               Client Testimonials
             </Link>
-            <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.CONTACT} className="text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </Link>
           </nav>
@@ -60,22 +61,22 @@ export function Footer() {
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Services</h3>
           <nav className="flex flex-col gap-2">
-            <Link href="/services/wedding-photography" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_WEDDING} className="text-muted-foreground hover:text-foreground transition-colors">
               Wedding Photography
             </Link>
-            <Link href="/services/graduation-photography" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_GRADUATION} className="text-muted-foreground hover:text-foreground transition-colors">
               Graduation Photography
             </Link>
-            <Link href="/services/birthday-photography" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_BIRTHDAY} className="text-muted-foreground hover:text-foreground transition-colors">
               Birthday Photography
             </Link>
-            <Link href="/services/engagement-shoots" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_ENGAGEMENT} className="text-muted-foreground hover:text-foreground transition-colors">
               Engagement Sessions
             </Link>
-            <Link href="/services/corporate-photography" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_CORPORATE} className="text-muted-foreground hover:text-foreground transition-colors">
               Corporate Events
             </Link>
-            <Link href="/services/cultural-ceremonies" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={ROUTES.SERVICES_CULTURAL} className="text-muted-foreground hover:text-foreground transition-colors">
               Cultural Ceremonies
             </Link>
           </nav>
@@ -86,15 +87,15 @@ export function Footer() {
           <div className="space-y-3">
             <div className="flex items-center gap-3 text-muted-foreground">
               <Mail className="h-4 w-4" />
-              <span>hasaranga@luminousmoments.com</span>
+              <span>{CONTACT.EMAIL}</span>
             </div>
             <div className="flex items-center gap-3 text-muted-foreground">
               <Phone className="h-4 w-4" />
-              <span>+94 71 234 5678</span>
+              <span>{CONTACT.PHONE}</span>
             </div>
             <div className="flex items-start gap-3 text-muted-foreground">
               <MapPin className="h-4 w-4 mt-1" />
-              <span>42 Galle Road, Colombo 03, Sri Lanka</span>
+              <span>{CONTACT.ADDRESS}</span>
             </div>
           </div>
         </div>
@@ -107,10 +108,10 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Hasaranga Suloksha Photography. All rights reserved.
         </p>
         <div className="flex gap-6">
-          <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href={ROUTES.PRIVACY} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Privacy Policy
           </Link>
-          <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href={ROUTES.TERMS} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Terms of Service
           </Link>
         </div>
