@@ -1,10 +1,13 @@
+import * as React from "react";
 import Link from "next/link"
 import { InstagramIcon, FacebookIcon, TwitterIcon, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { ROUTES, CONTACT } from "@/constants"
 
-export function Footer() {
+export const Footer = React.memo(function FooterComponent() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-muted py-16">
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -105,7 +108,7 @@ export function Footer() {
       
       <div className="container flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Hasaranga Suloksha Photography. All rights reserved.
+          &copy; {currentYear} Hasaranga Suloksha Photography. All rights reserved.
         </p>
         <div className="flex gap-6">
           <Link href={ROUTES.PRIVACY} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -118,4 +121,4 @@ export function Footer() {
       </div>
     </footer>
   )
-} 
+}); 

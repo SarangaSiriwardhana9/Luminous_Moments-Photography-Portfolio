@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Award, Users, Star } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/optimized-image"
 import { IMAGES, ROUTES } from "@/constants"
 
 export function PhotographerBioSection() {
@@ -18,7 +18,7 @@ export function PhotographerBioSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
           <div className="lg:col-span-1">
             <div className="relative h-[500px] w-full rounded-lg overflow-hidden">
-              <Image 
+              <OptimizedImage 
                 src={IMAGES.PHOTOGRAPHER_PORTRAIT} 
                 alt="Hasaranga Suloksha - Professional Photographer" 
                 fill

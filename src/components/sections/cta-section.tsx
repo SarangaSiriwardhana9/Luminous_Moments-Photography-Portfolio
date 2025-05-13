@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Clock } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/optimized-image"
 import { IMAGES, ROUTES } from "@/constants"
 
 export function CTASection() {
@@ -31,7 +31,7 @@ export function CTASection() {
             </div>
           </div>
           <div className="relative">
-            <Image 
+            <OptimizedImage 
               src={IMAGES.CTA_IMAGE} 
               alt="Photography session in Sri Lanka" 
               width={600}

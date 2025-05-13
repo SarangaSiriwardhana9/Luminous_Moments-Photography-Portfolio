@@ -80,7 +80,7 @@ export function Header() {
       setIsScrolled(window.scrollY > 20)
     }
     
-    // Check scroll position immediately on mount
+ 
     handleScroll()
     
     window.addEventListener("scroll", handleScroll)
@@ -97,7 +97,7 @@ export function Header() {
       )}
     >
       <div className="container">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 md:h-20 items-center justify-between max-w-8xl mx-auto">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -105,16 +105,16 @@ export function Header() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
-                Luminous<span className="text-primary">Moments</span>
+              <span className="text-2xl md:text-3xl font-bold   bg-primary bg-clip-text text-transparent">
+                Luminous Moments 
               </span>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-8 lg:space-x-12">
             <NavigationMenu>
-              <NavigationMenuList>
+              <NavigationMenuList className="space-x-2 lg:space-x-4">
                 {mainNavItems.map((item, index) => (
                   <NavigationMenuItem key={item.href}>
                     {item.children ? (
@@ -122,6 +122,7 @@ export function Header() {
                         <NavigationMenuTrigger
                           className={cn(
                             NavigationMenuTriggerStyle,
+                            "text-base lg:text-lg",
                             pathname.startsWith(item.href) ? "text-primary" : (!isScrolled && pathname === "/" ? "text-white" : "text-muted-foreground")
                           )}
                         >
@@ -136,8 +137,8 @@ export function Header() {
                                     href={child.href}
                                     className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                                   >
-                                    <div className="text-sm font-medium leading-none">{child.title}</div>
-                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                    <div className="text-sm lg:text-base font-medium leading-none">{child.title}</div>
+                                    <p className="line-clamp-2 text-sm lg:text-base leading-snug text-muted-foreground">
                                       {child.description}
                                     </p>
                                   </Link>
@@ -151,7 +152,7 @@ export function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "text-sm font-medium transition-colors hover:text-primary relative py-2 px-4",
+                          "text-base lg:text-lg font-medium transition-colors hover:text-primary relative py-2 px-4",
                           pathname === item.href
                             ? "text-primary"
                             : (!isScrolled && pathname === "/" ? "text-white hover:text-white/90" : "text-muted-foreground")
@@ -181,8 +182,8 @@ export function Header() {
               )}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-5 w-5 lg:h-6 lg:w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 lg:h-6 lg:w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
             
@@ -193,8 +194,12 @@ export function Header() {
             >
               <Button 
                 asChild
+                size="lg"
                 variant={!isScrolled && pathname === "/" ? "outline" : "default"}
-                className={!isScrolled && pathname === "/" ? "border-white text-white hover:bg-white hover:text-black" : ""}
+                className={cn(
+                  "text-base lg:text-lg px-6 lg:px-8",
+                  !isScrolled && pathname === "/" ? "border-white text-white hover:bg-white hover:text-black" : ""
+                )}
               >
                 <Link href="/contact">Book Now</Link>
               </Button>

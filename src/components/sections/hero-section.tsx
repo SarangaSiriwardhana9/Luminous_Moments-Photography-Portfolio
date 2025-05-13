@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/optimized-image"
 import { IMAGES, ROUTES } from "@/constants"
 
 export function HeroSection() {
@@ -11,7 +11,7 @@ export function HeroSection() {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <Image
+        <OptimizedImage
           src={IMAGES.HERO_BG}
           alt="Professional photography by Hasaranga Suloksha"
           fill

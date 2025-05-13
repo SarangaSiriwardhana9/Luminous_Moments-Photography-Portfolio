@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
@@ -6,14 +7,17 @@ import { ROUTES, SERVICES_DATA } from "@/constants"
 
 export function ServicesSection() {
  
-  const services = Object.values(SERVICES_DATA).map(service => ({
-    title: service.title,
-    description: service.shortDescription,
-    imageSrc: service.heroImage,
-    additionalImages: [service.heroImage, ...service.additionalImages],
-    href: `/services/${service.id}`,
-    price: service.packages.find(pkg => pkg.highlighted)?.price || service.packages[0].price
-  }));
+  const services = React.useMemo(() => 
+    Object.values(SERVICES_DATA).map(service => ({
+      id: service.id,
+      title: service.title,
+      description: service.shortDescription,
+      imageSrc: service.heroImage,
+      additionalImages: [service.heroImage, ...service.additionalImages],
+      href: `/services/${service.id}`,
+      price: service.packages.find(pkg => pkg.highlighted)?.price || service.packages[0].price
+    })),
+  []);
 
   return (
     <section className="py-24 bg-muted/30">
@@ -32,7 +36,7 @@ export function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCardHover
-              key={index}
+              key={service.id}
               index={index}
               title={service.title}
               description={service.description}

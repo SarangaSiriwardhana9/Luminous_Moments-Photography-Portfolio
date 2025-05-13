@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { GalleryImage } from "@/constants/types";
 
 interface PortfolioPageProps {
   params: {
@@ -22,30 +23,31 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
-  const category = (await params).category;
-  const categoryData = PORTFOLIO_DATA[category];
+  const categorySlug = (await params).category;
+  const categoryData = PORTFOLIO_DATA[categorySlug];
   
   if (!categoryData) {
     return {
-      title: "Portfolio Category Not Found",
+      title: "Portfolio Category Not Found | LuminousMoments",
       description: "The requested portfolio category could not be found.",
     };
   }
   
   return {
     title: `${categoryData.title} Portfolio | LuminousMoments`,
-    description: categoryData.shortDescription,
+    description: categoryData.description || categoryData.shortDescription,
   };
 }
 
-export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
-  const category = params.category;
+export default async function PortfolioCategoryPage({ params }: PortfolioPageProps) {
+  const category = (await params).category;
   const categoryData = PORTFOLIO_DATA[category];
   
   if (!categoryData) {
     notFound();
   }
   
+  const { title, description, images, heroImage } = categoryData;
  
   const categories = [
     { id: "all", name: "All Categories", href: ROUTES.PORTFOLIO },
@@ -69,16 +71,16 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
         <section className="relative h-[300px] md:h-[400px]">
           <div className="absolute inset-0 bg-black/50 z-10" />
           <Image 
-            src={categoryData.heroImage} 
-            alt={`${categoryData.title} portfolio`}
+            src={heroImage} 
+            alt={`${title} portfolio`}
             fill
             className="object-cover"
             priority
           />
           <div className="relative z-20 container h-full flex flex-col justify-center items-center text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{categoryData.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
             <p className="text-lg md:text-xl max-w-2xl">
-              {categoryData.description}
+              {description}
             </p>
           </div>
         </section>
@@ -107,16 +109,16 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
         <section className="py-12">
           <div className="container">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-4">{categoryData.title} Portfolio</h2>
+              <h2 className="text-3xl font-bold mb-4">{title} Portfolio</h2>
               <p className="text-lg text-muted-foreground mb-6">
                 {category === "weddings" 
                   ? "Our wedding photography portfolio showcases the beautiful diversity of Sri Lankan weddings, from traditional Poruwa ceremonies to modern celebrations. We capture the essence of each couple's unique love story through our artistic and candid photography approach."
                   : category === "graduations"
                   ? "Our graduation photography portfolio showcases the pride and joy of academic achievements across Sri Lanka. From university convocations to school graduations, we capture these milestone moments with professionalism and creativity."
-                  : categoryData.shortDescription}
+                  : description}
               </p>
               <p className="text-lg text-muted-foreground">
-                Browse through our collection of {categoryData.title.toLowerCase()} photographs to see our work and the quality we deliver to all our clients.
+                Browse through our collection of {title.toLowerCase()} photographs to see our work and the quality we deliver to all our clients.
               </p>
             </div>
           </div>
@@ -126,7 +128,7 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
         <section className="py-8">
           <div className="container">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoryData.images.map((image, index) => (
+              {images.map((image, index) => (
                 <div key={index} className="group relative overflow-hidden rounded-lg shadow-md">
                   <div className="aspect-[3/4] relative">
                     <Image
@@ -155,14 +157,14 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
         {/* Call to Action */}
         <section className="py-16 bg-primary/10">
           <div className="container text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to capture your {categoryData.title.toLowerCase()}?</h2>
+            <h2 className="text-3xl font-bold mb-6">Ready to capture your {title.toLowerCase()}?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Let our professional photographers document your special moments with creativity and expertise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="gap-2 group">
                 <Link href={categoryData.serviceLink}>
-                  View {categoryData.title} Packages
+                  View {title} Packages
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>

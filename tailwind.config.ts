@@ -13,12 +13,34 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
       screens: {
-        "2xl": "1400px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
       },
     },
     extend: {
+      maxWidth: {
+        "8xl": "88rem",
+        "9xl": "96rem",
+      },
+      fontSize: {
+        "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
+        "5xl": ["3rem", { lineHeight: "3.5rem" }],
+        "6xl": ["3.75rem", { lineHeight: "4rem" }],
+        "7xl": ["4.5rem", { lineHeight: "4.75rem" }],
+        "8xl": ["6rem", { lineHeight: "6.25rem" }],
+        "9xl": ["8rem", { lineHeight: "8.25rem" }],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

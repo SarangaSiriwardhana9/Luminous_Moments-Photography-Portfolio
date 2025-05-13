@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -21,25 +21,25 @@ type TestimonialCarouselProps = {
   className?: string
 }
 
-export function TestimonialCarousel({ testimonials, className }: TestimonialCarouselProps) {
+export const TestimonialCarousel = React.memo(function TestimonialCarouselComponent({ testimonials, className }: TestimonialCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+  const [prevBtnEnabled, setPrevBtnEnabled] = React.useState(false)
+  const [nextBtnEnabled, setNextBtnEnabled] = React.useState(false)
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
-  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi])
+  const scrollPrev = React.useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
+  const scrollNext = React.useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+  const scrollTo = React.useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi])
 
-  const onSelect = useCallback(() => {
+  const onSelect = React.useCallback(() => {
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
     setPrevBtnEnabled(emblaApi.canScrollPrev())
     setNextBtnEnabled(emblaApi.canScrollNext())
   }, [emblaApi])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!emblaApi) return
     
     onSelect()
@@ -48,10 +48,16 @@ export function TestimonialCarousel({ testimonials, className }: TestimonialCaro
     emblaApi.on("reInit", onSelect)
     
     return () => {
-      emblaApi.off("select", onSelect)
-      emblaApi.off("reInit", onSelect)
+      if (emblaApi) {
+        emblaApi.off("select", onSelect)
+        emblaApi.off("reInit", onSelect)
+      }
     }
   }, [emblaApi, onSelect])
+
+  if (!testimonials || testimonials.length === 0) {
+    return null
+  }
 
   return (
     <div className={cn("space-y-8", className)}>
@@ -64,7 +70,7 @@ export function TestimonialCarousel({ testimonials, className }: TestimonialCaro
                   <CardContent className="pt-6 pb-8 px-8">
                     <Quote className="h-10 w-10 text-primary/20 mb-4" />
                     <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6">
-                      "{testimonial.quote}"
+                      {testimonial.quote}
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <Avatar>
@@ -85,46 +91,49 @@ export function TestimonialCarousel({ testimonials, className }: TestimonialCaro
           </div>
         </div>
         
-        <div className="flex justify-center mt-8 gap-2">
-          <Button
-            size="icon"
-            variant="outline"
-            className="rounded-full"
-            onClick={scrollPrev}
-            disabled={!prevBtnEnabled}
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Previous testimonial</span>
-          </Button>
-          <Button
-            size="icon"
-            variant="outline"
-            className="rounded-full"
-            onClick={scrollNext}
-            disabled={!nextBtnEnabled}
-          >
-            <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Next testimonial</span>
-          </Button>
-        </div>
-      </div>
+        {testimonials.length > 1 && (
+          <>
+            <div className="flex justify-center mt-8 gap-2">
+              <Button
+                size="icon"
+                variant="outline"
+                className="rounded-full"
+                onClick={scrollPrev}
+                disabled={!prevBtnEnabled}
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                className="rounded-full"
+                onClick={scrollNext}
+                disabled={!nextBtnEnabled}
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
       
-      <div className="flex justify-center gap-2">
-        {scrollSnaps.map((_, index) => (
-          <Button
-            key={index}
-            size="sm"
-            variant="ghost"
-            className={cn(
-              "w-2 h-2 p-0 rounded-full",
-              index === selectedIndex ? "bg-primary" : "bg-muted-foreground/30"
-            )}
-            onClick={() => scrollTo(index)}
-          >
-            <span className="sr-only">Go to slide {index + 1}</span>
-          </Button>
-        ))}
+            <div className="flex justify-center gap-2 mt-4">
+              {scrollSnaps.map((_, index) => (
+                <Button
+                  key={index}
+                  size="sm"
+                  variant="ghost"
+                  className={cn(
+                    "w-2 h-2 p-0 rounded-full transition-colors",
+                    index === selectedIndex ? "bg-primary hover:bg-primary/90" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  )}
+                  onClick={() => scrollTo(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
-} 
+}) 

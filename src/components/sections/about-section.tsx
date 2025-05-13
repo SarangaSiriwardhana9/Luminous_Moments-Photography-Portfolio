@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Heart, Image as ImageIcon, Camera } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/optimized-image"
 import { IMAGES, ROUTES } from "@/constants"
 
 export function AboutSection() {
@@ -46,7 +46,7 @@ export function AboutSection() {
           </div>
           <div className="relative">
             <div className="relative h-[500px] w-full rounded-lg overflow-hidden">
-              <Image 
+              <OptimizedImage 
                 src={IMAGES.ABOUT_PHOTOGRAPHER} 
                 alt="Sri Lankan Professional Photographer" 
                 fill
