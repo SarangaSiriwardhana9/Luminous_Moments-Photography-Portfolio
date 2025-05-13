@@ -28,12 +28,12 @@ export function PhotographerBioSection() {
           </div>
           
           <div className="lg:col-span-2 space-y-6">
-            <p className="text-xl text-muted-foreground italic">"Photography is not just my profession, it's my passion. I believe in capturing authentic moments that tell your unique story."</p>
+            <p className="text-xl text-muted-foreground italic">&quot;Photography is not just my profession, it&apos;s my passion. I believe in capturing authentic moments that tell your unique story.&quot;</p>
             
             <p className="text-muted-foreground">
               Born and raised in the cultural heart of Sri Lanka, I developed a deep appreciation for the rich traditions 
               and vibrant celebrations that define our heritage. My journey as a photographer began over a decade ago, 
-              and since then, I've had the privilege of documenting thousands of special moments for clients across the island.
+              and since then, I&apos;ve had the privilege of documenting thousands of special moments for clients across the island.
             </p>
             
             <p className="text-muted-foreground">

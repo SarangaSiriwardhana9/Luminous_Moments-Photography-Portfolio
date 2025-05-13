@@ -2,6 +2,7 @@ import { IMAGES, ROUTES } from "./index";
 import { 
   PortfolioCategory as PortfolioCategoryEnum,
   PortfolioCategoryData,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   GalleryImage
 } from "./types";
 

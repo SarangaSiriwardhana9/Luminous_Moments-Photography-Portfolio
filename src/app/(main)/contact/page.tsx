@@ -1,5 +1,3 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -31,7 +29,7 @@ export default function ContactPage() {
           <div className="relative z-20 container h-full flex flex-col justify-center items-center text-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
             <p className="text-lg md:text-xl max-w-2xl">
-              Let's discuss how we can help capture your special moments. Get in touch with us today.
+              Let&apos;s discuss how we can help capture your special moments. Get in touch with us today.
             </p>
           </div>
         </section>
@@ -87,7 +85,7 @@ export default function ContactPage() {
                 <div className="max-w-md">
                   <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
                   <p className="text-muted-foreground mb-6">
-                    Fill out the form below and we'll get back to you within 24 hours. For urgent inquiries, 
+                    Fill out the form below and we&apos;ll get back to you within 24 hours. For urgent inquiries, 
                     please call us directly.
                   </p>
                   

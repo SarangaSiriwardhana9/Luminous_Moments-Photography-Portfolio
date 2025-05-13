@@ -1,8 +1,6 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { IMAGES, ROUTES, SERVICES } from "@/constants"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, ImageIcon, Camera, Clock, Heart, Award } from "lucide-react"
+import { ArrowRight, Check, Camera, Clock, Heart, Award } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -269,7 +267,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl font-bold">Ready to Book Your Photography Session?</h2>
               <p className="text-primary-foreground/90">
                 Contact us today to discuss your specific needs and check our availability for your event date.
-                We're here to help create beautiful memories that will last a lifetime.
+                We&apos;re here to help create beautiful memories that will last a lifetime.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" variant="secondary">

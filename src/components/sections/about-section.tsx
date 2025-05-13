@@ -13,7 +13,7 @@ export function AboutSection() {
             <div className="inline-block bg-primary/10 text-primary font-medium rounded-full px-4 py-1 text-sm">
               About Luminous Moments
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Capturing Life's Special Moments with Artistic Vision</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Capturing Life&apos;s Special Moments with Artistic Vision</h2>
             <p className="text-muted-foreground text-lg">
               With over 10 years of experience documenting weddings, graduations, birthdays, and special events across Sri Lanka, 
               I specialize in creating timeless imagery that preserves the rich cultural traditions and 

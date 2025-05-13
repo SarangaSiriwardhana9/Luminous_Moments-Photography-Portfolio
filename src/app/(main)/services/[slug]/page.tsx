@@ -1,5 +1,3 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ROUTES, SERVICES_DATA } from "@/constants";
 import Image from "next/image";
@@ -10,9 +8,9 @@ import { Metadata } from "next";
 import { ServiceFeatures } from "@/components/service-features";
 
 interface ServicePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
@@ -22,8 +20,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const slug = (await params).slug;
+export async function generateMetadata({ params: paramsPromise }: ServicePageProps): Promise<Metadata> {
+  const params = await paramsPromise;
+  const slug = params.slug;
   const service = SERVICES_DATA[slug];
   
   if (!service) {
@@ -39,8 +38,9 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 }
 
-export default async function ServicePage({ params }: ServicePageProps) {
-  const slug = (await params).slug;
+export default async function ServicePage({ params: paramsPromise }: ServicePageProps) {
+  const params = await paramsPromise;
+  const slug = params.slug;
   const service = SERVICES_DATA[slug];
   
   if (!service) {

@@ -1,5 +1,3 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { IMAGES, ROUTES, PORTFOLIO_DATA } from "@/constants";
 import { GalleryImage } from "@/constants/types";

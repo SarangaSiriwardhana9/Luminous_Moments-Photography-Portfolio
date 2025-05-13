@@ -16,7 +16,7 @@ export const Footer = React.memo(function FooterComponent() {
             Luminous <span className="text-primary">Moments</span>
           </h3>
           <p className="text-muted-foreground max-w-xs">
-            Capturing life's beautiful moments through the lens of Hasaranga Suloksha, professional photographer based in Sri Lanka.
+            Capturing life&apos;s beautiful moments through the lens of Hasaranga Suloksha, professional photographer based in Sri Lanka.
           </p>
           <div className="flex gap-4">
             <Button size="icon" variant="ghost" asChild>

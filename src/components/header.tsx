@@ -115,7 +115,7 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8 lg:space-x-12">
             <NavigationMenu>
               <NavigationMenuList className="space-x-2 lg:space-x-4">
-                {mainNavItems.map((item, index) => (
+                {mainNavItems.map((item) => (
                   <NavigationMenuItem key={item.href}>
                     {item.children ? (
                       <>

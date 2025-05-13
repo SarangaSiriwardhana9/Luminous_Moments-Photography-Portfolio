@@ -12,7 +12,7 @@ export function CTASection() {
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Ready to Book Your Photography Session?</h2>
             <p className="text-primary-foreground/90 text-lg">
-              Let's create beautiful memories together. Contact us to check availability for your special day
+              Let&apos;s create beautiful memories together. Contact us to check availability for your special day
               and learn more about our customized photography packages.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">

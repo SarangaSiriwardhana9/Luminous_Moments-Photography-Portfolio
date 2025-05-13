@@ -2,8 +2,11 @@ import { IMAGES, ROUTES } from "./index";
 import { 
   ServiceCategory, 
   ServiceData, 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ServiceFeature, 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ServicePackage, 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   GalleryImage,
   IconName
 } from "./types";
@@ -250,7 +253,7 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     portfolioLink: ROUTES.PORTFOLIO_GRADUATIONS
   },
   [ServiceCategory.BIRTHDAY]: {
-    id: "birthday-photography",
+    id: ServiceCategory.BIRTHDAY,
     title: "Birthday Photography",
     description: "Preserve the joy and excitement of birthday celebrations with our professional photography services.",
     shortDescription: "Capture the joy and excitement of birthday celebrations, from kids' parties to milestone birthdays with friends and family.",
@@ -365,8 +368,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     portfolioLink: ROUTES.PORTFOLIO_BIRTHDAYS
   },
-  "engagement-shoots": {
-    id: "engagement-shoots",
+  [ServiceCategory.ENGAGEMENT]: {
+    id: ServiceCategory.ENGAGEMENT,
     title: "Engagement Photography",
     description: "Beautiful pre-wedding photoshoots to celebrate your engagement and create stunning images for your invitations.",
     shortDescription: "Beautiful pre-wedding photoshoots to celebrate your engagement and create stunning images for your invitations.",
@@ -483,8 +486,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     portfolioLink: ROUTES.PORTFOLIO_ENGAGEMENTS
   },
-  "corporate-photography": {
-    id: "corporate-photography",
+  [ServiceCategory.CORPORATE]: {
+    id: ServiceCategory.CORPORATE,
     title: "Corporate Photography",
     description: "Professional photography for corporate events, conferences, product launches, and team gatherings.",
     shortDescription: "Professional photography for corporate events, conferences, product launches, and team gatherings.",
@@ -601,10 +604,10 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     portfolioLink: ROUTES.PORTFOLIO_CORPORATE
   },
-  "cultural-ceremonies": {
-    id: "cultural-ceremonies",
-    title: "Cultural Ceremonies",
-    description: "Specialized photography for traditional Sri Lankan ceremonies, including Poruwa, Homecoming, and religious rituals.",
+  [ServiceCategory.CULTURAL]: {
+    id: ServiceCategory.CULTURAL,
+    title: "Cultural Photography",
+    description: "Documenting the vibrant cultural traditions, festivals, and ceremonies of Sri Lanka.",
     shortDescription: "Specialized photography for traditional Sri Lankan ceremonies, including Poruwa, Homecoming, and religious rituals.",
     heroImage: IMAGES.SERVICE_CULTURAL,
     detailImage: IMAGES.PORTFOLIO_6,

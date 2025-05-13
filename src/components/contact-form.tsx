@@ -3,8 +3,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Clock } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 export function ContactForm() {
   const [name, setName] = useState("")

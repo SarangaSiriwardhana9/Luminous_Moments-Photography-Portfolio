@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic";
-import { ServiceFeature, IconName } from "@/constants/types";
+import { ServiceFeature } from "@/constants/types";
 
  
 const DynamicIcon = dynamic(() => import("@/components/dynamic-icon"), { ssr: false });

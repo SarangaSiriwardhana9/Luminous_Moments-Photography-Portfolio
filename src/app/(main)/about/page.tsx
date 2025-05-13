@@ -1,8 +1,6 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { IMAGES } from "@/constants"
 import { Button } from "@/components/ui/button"
-import { Award, Users, Star, Camera, ImageIcon, Heart, Clock } from "lucide-react"
+import { Award, Users, Camera, ImageIcon, Heart, Clock } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -56,19 +54,19 @@ export default function AboutPage() {
                 
                 <p className="text-muted-foreground">
                   My philosophy is simple: to document life authentically while bringing an artistic vision that elevates 
-                  everyday moments into timeless memories. Whether it's the intricate details of a traditional Sri Lankan 
-                  wedding ceremony or the spontaneous joy of a child's birthday celebration, I strive to create images that 
+                  everyday moments into timeless memories. Whether it&apos;s the intricate details of a traditional Sri Lankan 
+                  wedding ceremony or the spontaneous joy of a child&apos;s birthday celebration, I strive to create images that 
                   not only look beautiful but also capture genuine emotions and connections.
                 </p>
                 
                 <p className="text-muted-foreground">
-                  Over the years, I've had the privilege of documenting thousands of special moments for clients across the island. 
-                  From elaborate weddings in Colombo's grand hotels to intimate family gatherings in rural villages, 
+                  Over the years, I&apos;ve had the privilege of documenting thousands of special moments for clients across the island. 
+                  From elaborate weddings in Colombo&apos;s grand hotels to intimate family gatherings in rural villages, 
                   I bring the same level of dedication and attention to detail to every shoot.
                 </p>
                 
                 <blockquote className="border-l-4 border-primary pl-4 py-2 my-6 italic text-xl">
-                  "Photography is not just my profession, it's my passion. I believe in capturing authentic moments that tell your unique story."
+                  &quot;Photography is not just my profession, it&apos;s my passion. I believe in capturing authentic moments that tell your unique story.&quot;
                 </blockquote>
                 
                 <p className="text-muted-foreground">

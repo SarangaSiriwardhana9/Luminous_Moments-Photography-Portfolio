@@ -1,5 +1,3 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { PORTFOLIO_DATA, ROUTES } from "@/constants";
 import Image from "next/image";
@@ -7,12 +5,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { GalleryImage } from "@/constants/types";
 
 interface PortfolioPageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
@@ -22,8 +19,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
-  const categorySlug = (await params).category;
+export async function generateMetadata({ params: paramsPromise }: PortfolioPageProps): Promise<Metadata> {
+  const params = await paramsPromise;
+  const categorySlug = params.category;
   const categoryData = PORTFOLIO_DATA[categorySlug];
   
   if (!categoryData) {
@@ -39,8 +37,9 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
   };
 }
 
-export default async function PortfolioCategoryPage({ params }: PortfolioPageProps) {
-  const category = (await params).category;
+export default async function PortfolioCategoryPage({ params: paramsPromise }: PortfolioPageProps) {
+  const params = await paramsPromise;
+  const category = params.category;
   const categoryData = PORTFOLIO_DATA[category];
   
   if (!categoryData) {

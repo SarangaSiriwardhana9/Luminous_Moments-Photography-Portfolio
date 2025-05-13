@@ -35,7 +35,7 @@ export function HeroSection() {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold"
           >
-            Capturing Life's <span className="text-primary">Special</span> Moments
+            Capturing Life&apos;s <span className="text-primary">Special</span> Moments
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
