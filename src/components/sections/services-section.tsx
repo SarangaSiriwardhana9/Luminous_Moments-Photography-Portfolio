@@ -2,9 +2,19 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { ServiceCardHover } from "@/components/service-card"
-import { ROUTES, SERVICES } from "@/constants"
+import { ROUTES, SERVICES_DATA } from "@/constants"
 
 export function ServicesSection() {
+  // Convert the services data object to an array for mapping and include additional images
+  const services = Object.values(SERVICES_DATA).map(service => ({
+    title: service.title,
+    description: service.shortDescription,
+    imageSrc: service.heroImage,
+    additionalImages: [service.heroImage, ...service.additionalImages],
+    href: `/services/${service.id}`,
+    price: service.packages.find(pkg => pkg.highlighted)?.price || service.packages[0].price
+  }));
+
   return (
     <section className="py-24 bg-muted/30">
       <div className="container">
@@ -20,13 +30,14 @@ export function ServicesSection() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service, index) => (
+          {services.map((service, index) => (
             <ServiceCardHover
               key={index}
               index={index}
               title={service.title}
               description={service.description}
               imageSrc={service.imageSrc}
+              additionalImages={service.additionalImages}
               href={service.href}
               price={service.price}
             />

@@ -2,9 +2,19 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { ImageGallery } from "@/components/image-gallery"
-import { ROUTES, PORTFOLIO_IMAGES } from "@/constants"
+import { ROUTES, PORTFOLIO_DATA, IMAGES } from "@/constants"
 
 export function PortfolioSection() {
+  // Create an array of featured images using numbered portfolio images
+  const featuredImages = [
+    { src: "/images/portfolio-1.jpg", alt: "Wedding Photography", width: 800, height: 600 },
+    { src: "/images/portfolio-10.jpg", alt: "Graduation Photography", width: 800, height: 600 },
+    { src: "/images/portfolio-15.jpg", alt: "Birthday Photography", width: 800, height: 600 },
+    { src: "/images/portfolio-19.jpg", alt: "Engagement Photography", width: 800, height: 600 },
+    { src: "/images/portfolio-22.jpg", alt: "Corporate Photography", width: 800, height: 600 },
+    { src: "/images/portfolio-3.jpg", alt: "Cultural Photography", width: 800, height: 600 },
+  ];
+
   return (
     <section className="py-24 bg-background">
       <div className="container">
@@ -18,7 +28,7 @@ export function PortfolioSection() {
           </p>
         </div>
         
-        <ImageGallery images={PORTFOLIO_IMAGES} />
+        <ImageGallery images={featuredImages} />
         
         <div className="text-center mt-12">
           <Button asChild size="lg" className="gap-2 group">

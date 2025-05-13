@@ -8,11 +8,28 @@ export const IMAGES = {
   
   // Services images
   SERVICE_WEDDING: '/images/service-wedding.jpg',
+  SERVICE_WEDDING_1: '/images/service-wedding1.jpg',
+  SERVICE_WEDDING_2: '/images/service-wedding2.jpg',
+  
   SERVICE_GRADUATION: '/images/service-graduation.jpg',
+  SERVICE_GRADUATION_1: '/images/service-graduation1.jpg',
+  SERVICE_GRADUATION_2: '/images/service-graduation2.jpg',
+  
   SERVICE_BIRTHDAY: '/images/service-birthday.jpg',
+  SERVICE_BIRTHDAY_1: '/images/service-birthday1.jpg',
+  SERVICE_BIRTHDAY_2: '/images/service-birthday2.jpg',
+  
   SERVICE_ENGAGEMENT: '/images/service-engagement.jpg',
+  SERVICE_ENGAGEMENT_1: '/images/service-engagement1.jpg',
+  SERVICE_ENGAGEMENT_2: '/images/service-engagement2.jpg',
+  
   SERVICE_CORPORATE: '/images/service-corporate.jpg',
+  SERVICE_CORPORATE_1: '/images/service-corporate1.jpg',
+  SERVICE_CORPORATE_2: '/images/service-corporate2.jpg',
+  
   SERVICE_CULTURAL: '/images/service-cultural.jpg',
+  SERVICE_CULTURAL_2: '/images/service-cultural2.jpg',
+  SERVICE_CULTURAL_3: '/images/service-cultural3.jpg',
   
   // CTA images
   CTA_IMAGE: '/images/cta-image.jpg',

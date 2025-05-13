@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,6 +13,7 @@ interface ServiceCardProps {
   title: string
   description: string
   imageSrc: string
+  additionalImages?: string[]
   href: string
   price?: string
   className?: string
@@ -77,13 +79,46 @@ export function ServiceCardHover({
   title, 
   description, 
   imageSrc, 
+  additionalImages = [],
   href, 
   price, 
   className,
   index = 0
 }: ServiceCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = additionalImages && additionalImages.length > 0 ? additionalImages : [imageSrc];
+  
+  // Cycle through images when hovering
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    const element = document.getElementById(`service-card-${index}`);
+    
+    const startInterval = () => {
+      interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      }, 2000);
+    };
+    
+    const stopInterval = () => {
+      clearInterval(interval);
+      setCurrentImageIndex(0);
+    };
+    
+    if (element) {
+      element.addEventListener('mouseenter', startInterval);
+      element.addEventListener('mouseleave', stopInterval);
+      
+      return () => {
+        element.removeEventListener('mouseenter', startInterval);
+        element.removeEventListener('mouseleave', stopInterval);
+        clearInterval(interval);
+      };
+    }
+  }, [images, index]);
+
   return (
     <motion.div
+      id={`service-card-${index}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -92,7 +127,7 @@ export function ServiceCardHover({
     >
       <div className="relative h-80 md:h-96 w-full overflow-hidden rounded-lg">
         <Image
-          src={imageSrc}
+          src={images[currentImageIndex]}
           alt={title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
