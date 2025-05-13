@@ -31,7 +31,7 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+ 
 
       <main>
         {/* Hero Banner */}
@@ -117,7 +117,7 @@ export default function PortfolioPage() {
         </section>
       </main>
 
-      <Footer />
+ 
     </div>
   );
 } 

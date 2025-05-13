@@ -64,7 +64,7 @@ export default async function PortfolioCategoryPage({ params }: PortfolioPagePro
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+ 
 
       <main>
         {/* Hero Banner */}
@@ -176,7 +176,7 @@ export default async function PortfolioCategoryPage({ params }: PortfolioPagePro
         </section>
       </main>
 
-      <Footer />
+ 
     </div>
   );
 } 

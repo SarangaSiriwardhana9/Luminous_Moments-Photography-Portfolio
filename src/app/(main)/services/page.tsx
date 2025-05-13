@@ -9,7 +9,7 @@ import Link from "next/link"
 export default function ServicesPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+ 
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-muted">
@@ -305,7 +305,7 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      <Footer />
+ 
     </div>
   );
 } 

@@ -15,7 +15,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+ 
 
       <main>
         {/* Hero Section */}
@@ -206,7 +206,7 @@ export default function ContactPage() {
         </section>
       </main>
 
-      <Footer />
+ 
     </div>
   );
 } 

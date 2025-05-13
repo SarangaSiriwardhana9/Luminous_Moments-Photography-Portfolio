@@ -55,7 +55,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+ 
 
       <main>
         {/* Hero Banner */}
@@ -256,7 +256,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </section>
       </main>
 
-      <Footer />
+ 
     </div>
   );
 } 
