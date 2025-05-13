@@ -1,43 +1,16 @@
 import { IMAGES, ROUTES } from "./index";
-
-export interface ServiceFeature {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-export interface ServicePackage {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  highlighted: boolean;
-}
-
-export interface ServiceGalleryImage {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
-
-export interface ServiceData {
-  id: string;
-  title: string;
-  description: string;
-  shortDescription: string;
-  heroImage: string;
-  detailImage: string;
-  additionalImages: string[];
-  galleryImages: ServiceGalleryImage[];
-  features: ServiceFeature[];
-  packages: ServicePackage[];
-  portfolioLink: string;
-}
+import { 
+  ServiceCategory, 
+  ServiceData, 
+  ServiceFeature, 
+  ServicePackage, 
+  GalleryImage,
+  IconName
+} from "./types";
 
 export const SERVICES_DATA: Record<string, ServiceData> = {
-  "wedding-photography": {
-    id: "wedding-photography",
+  [ServiceCategory.WEDDING]: {
+    id: ServiceCategory.WEDDING,
     title: "Wedding Photography",
     description: "Capturing the love, joy, and unique moments of your special day with artistic elegance.",
     shortDescription: "Comprehensive coverage of your wedding day, from preparation to reception, capturing all the important moments and details.",
@@ -84,22 +57,22 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     features: [
       {
-        icon: "Calendar",
+        icon: IconName.CALENDAR,
         title: "Pre-Wedding Consultation",
         description: "Detailed planning to understand your vision"
       },
       {
-        icon: "Clock",
+        icon: IconName.CLOCK,
         title: "Full-Day Coverage",
         description: "From preparation to reception"
       },
       {
-        icon: "Camera",
+        icon: IconName.CAMERA,
         title: "Multiple Photographers",
         description: "Capturing every angle and moment"
       },
       {
-        icon: "Heart",
+        icon: IconName.HEART,
         title: "Beautifully Edited",
         description: "Professional retouching for perfect memories"
       }
@@ -157,8 +130,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     portfolioLink: ROUTES.PORTFOLIO_WEDDINGS
   },
-  "graduation-photography": {
-    id: "graduation-photography",
+  [ServiceCategory.GRADUATION]: {
+    id: ServiceCategory.GRADUATION,
     title: "Graduation Photography",
     description: "Commemorate your academic achievements with professional photography that captures this important milestone.",
     shortDescription: "Professional graduation photos to commemorate your academic achievements, including individual portraits and group shots.",
@@ -205,22 +178,22 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     features: [
       {
-        icon: "Award",
+        icon: IconName.AWARD,
         title: "Formal Portraits",
         description: "Professional cap and gown portraits"
       },
       {
-        icon: "Camera",
+        icon: IconName.CAMERA,
         title: "Ceremony Coverage",
         description: "Capture the processional and receiving your degree"
       },
       {
-        icon: "Users",
+        icon: IconName.USERS,
         title: "Group Photos",
         description: "With classmates, faculty, and family"
       },
       {
-        icon: "Download",
+        icon: IconName.DOWNLOAD,
         title: "Digital Gallery",
         description: "High-resolution images for sharing"
       }
@@ -276,7 +249,7 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
     ],
     portfolioLink: ROUTES.PORTFOLIO_GRADUATIONS
   },
-  "birthday-photography": {
+  [ServiceCategory.BIRTHDAY]: {
     id: "birthday-photography",
     title: "Birthday Photography",
     description: "Preserve the joy and excitement of birthday celebrations with our professional photography services.",

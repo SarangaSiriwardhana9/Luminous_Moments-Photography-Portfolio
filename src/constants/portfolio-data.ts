@@ -1,26 +1,13 @@
 import { IMAGES, ROUTES } from "./index";
+import { 
+  PortfolioCategory as PortfolioCategoryEnum,
+  PortfolioCategoryData,
+  GalleryImage
+} from "./types";
 
-export interface PortfolioImage {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  tags: string[];
-}
-
-export interface PortfolioCategory {
-  id: string;
-  title: string;
-  description: string;
-  shortDescription: string;
-  heroImage: string;
-  images: PortfolioImage[];
-  serviceLink: string;
-}
-
-export const PORTFOLIO_DATA: Record<string, PortfolioCategory> = {
-  "weddings": {
-    id: "weddings",
+export const PORTFOLIO_DATA: Record<string, PortfolioCategoryData> = {
+  [PortfolioCategoryEnum.WEDDINGS]: {
+    id: PortfolioCategoryEnum.WEDDINGS,
     title: "Wedding Photography",
     description: "A collection of our finest wedding photography showcasing love celebrations across Sri Lanka.",
     shortDescription: "Browse our collection of wedding photography from ceremonies across Sri Lanka. Traditional and modern wedding photography showcase.",
@@ -72,8 +59,8 @@ export const PORTFOLIO_DATA: Record<string, PortfolioCategory> = {
     ],
     serviceLink: ROUTES.SERVICES_WEDDING
   },
-  "graduations": {
-    id: "graduations",
+  [PortfolioCategoryEnum.GRADUATIONS]: {
+    id: PortfolioCategoryEnum.GRADUATIONS,
     title: "Graduation Photography",
     description: "A collection of our finest graduation photography showcasing academic achievements across Sri Lanka.",
     shortDescription: "Browse our collection of graduation photography from universities and schools across Sri Lanka. Professional graduation photography showcase.",
