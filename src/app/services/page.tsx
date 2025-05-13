@@ -2,7 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { IMAGES, ROUTES, SERVICES } from "@/constants"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, ImageIcon, Camera, Clock } from "lucide-react"
+import { ArrowRight, Check, ImageIcon, Camera, Clock, Heart, Award } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -217,108 +217,45 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Pricing Overview */}
+      {/* Why Choose Us */}
       <section className="py-16 bg-background">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">Pricing Overview</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
             <p className="text-muted-foreground">
-              We offer competitive pricing for all our photography services with flexible packages to suit your needs.
+              Our photography approach combines technical expertise, artistic vision, and personalized service to create stunning images that capture your special moments.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="border rounded-lg overflow-hidden">
-              <div className="bg-muted p-6">
-                <h3 className="text-xl font-bold">Basic Package</h3>
-                <div className="text-3xl font-bold mt-2">From LKR 35,000</div>
+            <div className="p-6 bg-muted/20 rounded-lg">
+              <div className="bg-primary/10 p-4 rounded-full inline-flex mb-4">
+                <Camera className="h-6 w-6 text-primary" />
               </div>
-              <div className="p-6">
-                <ul className="space-y-3">
-                  {[
-                    "4 hours of coverage",
-                    "1 photographer",
-                    "50+ edited digital images",
-                    "Online gallery",
-                    "Basic editing included",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <div className="rounded-full bg-primary/10 p-1">
-                        <Check className="h-4 w-4 text-primary" />
-                      </div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="w-full mt-6">
-                  <Link href={ROUTES.SERVICES_PRICING}>Learn More</Link>
-                </Button>
-              </div>
+              <h3 className="text-xl font-bold mb-3">Professional Equipment</h3>
+              <p className="text-muted-foreground">
+                We use only high-end professional cameras, lenses, and lighting equipment to ensure exceptional image quality in any environment.
+              </p>
             </div>
             
-            <div className="border border-primary rounded-lg overflow-hidden shadow-lg relative">
-              <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1">
-                Most Popular
+            <div className="p-6 bg-muted/20 rounded-lg">
+              <div className="bg-primary/10 p-4 rounded-full inline-flex mb-4">
+                <Heart className="h-6 w-6 text-primary" />
               </div>
-              <div className="bg-primary/10 p-6">
-                <h3 className="text-xl font-bold">Standard Package</h3>
-                <div className="text-3xl font-bold mt-2">From LKR 75,000</div>
-              </div>
-              <div className="p-6">
-                <ul className="space-y-3">
-                  {[
-                    "8 hours of coverage",
-                    "2 photographers",
-                    "150+ edited digital images",
-                    "Online gallery",
-                    "Advanced editing included",
-                    "Pre-event consultation",
-                    "Digital slideshow",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <div className="rounded-full bg-primary/10 p-1">
-                        <Check className="h-4 w-4 text-primary" />
-                      </div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="w-full mt-6">
-                  <Link href={ROUTES.SERVICES_PRICING}>Learn More</Link>
-                </Button>
-              </div>
+              <h3 className="text-xl font-bold mb-3">Personalized Experience</h3>
+              <p className="text-muted-foreground">
+                From the initial consultation to the final delivery, we tailor our services to your unique preferences, style, and vision.
+              </p>
             </div>
             
-            <div className="border rounded-lg overflow-hidden">
-              <div className="bg-muted p-6">
-                <h3 className="text-xl font-bold">Premium Package</h3>
-                <div className="text-3xl font-bold mt-2">From LKR 150,000</div>
+            <div className="p-6 bg-muted/20 rounded-lg">
+              <div className="bg-primary/10 p-4 rounded-full inline-flex mb-4">
+                <Award className="h-6 w-6 text-primary" />
               </div>
-              <div className="p-6">
-                <ul className="space-y-3">
-                  {[
-                    "Full day coverage (12+ hours)",
-                    "3 photographers",
-                    "300+ edited digital images",
-                    "Online gallery",
-                    "Premium editing",
-                    "Pre-event consultation & planning",
-                    "Digital slideshow",
-                    "Deluxe photo album",
-                    "Canvas prints",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <div className="rounded-full bg-primary/10 p-1">
-                        <Check className="h-4 w-4 text-primary" />
-                      </div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="w-full mt-6">
-                  <Link href={ROUTES.SERVICES_PRICING}>Learn More</Link>
-                </Button>
-              </div>
+              <h3 className="text-xl font-bold mb-3">10+ Years Experience</h3>
+              <p className="text-muted-foreground">
+                With over a decade of professional photography experience across Sri Lanka, we bring expertise and creativity to every project.
+              </p>
             </div>
           </div>
         </div>

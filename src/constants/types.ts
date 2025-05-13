@@ -4,12 +4,12 @@
 
 // Service categories
 export enum ServiceCategory {
-  WEDDING = "wedding-photography",
-  GRADUATION = "graduation-photography",
-  BIRTHDAY = "birthday-photography",
-  ENGAGEMENT = "engagement-shoots",
-  CORPORATE = "corporate-photography",
-  CULTURAL = "cultural-ceremonies"
+  WEDDING = 'wedding-photography',
+  GRADUATION = 'graduation-photography',
+  BIRTHDAY = 'birthday-photography',
+  ENGAGEMENT = 'engagement-shoots',
+  CORPORATE = 'corporate-photography',
+  CULTURAL = 'cultural-ceremonies'
 }
 
 // Portfolio categories
@@ -42,7 +42,8 @@ export enum IconName {
   PARTY = "Party",
   USER_PLUS = "UserPlus",
   IMAGE_PLUS = "ImagePlus",
-  HAND_HEART = "HandHeart"
+  HAND_HEART = "HandHeart",
+  IMAGE = "image"
 }
 
 // Image aspect ratios
@@ -79,7 +80,7 @@ export interface GalleryImage {
 
 // Full service data structure
 export interface ServiceData {
-  id: string;
+  id: ServiceCategory;
   title: string;
   description: string;
   shortDescription: string;
@@ -90,6 +91,7 @@ export interface ServiceData {
   features: ServiceFeature[];
   packages: ServicePackage[];
   portfolioLink: string;
+  photographyProcess?: ProcessStep[];
 }
 
 // Portfolio category data structure
@@ -112,4 +114,10 @@ export interface Testimonial {
   quote: string;
   rating: number;
   serviceType: string;
+}
+
+export interface ProcessStep {
+  title: string;
+  description: string;
+  icon?: IconName;
 } 
