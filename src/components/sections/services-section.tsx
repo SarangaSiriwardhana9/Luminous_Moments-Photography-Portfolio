@@ -5,7 +5,7 @@ import { ServiceCardHover } from "@/components/service-card"
 import { ROUTES, SERVICES_DATA } from "@/constants"
 
 export function ServicesSection() {
-  // Convert the services data object to an array for mapping and include additional images
+ 
   const services = Object.values(SERVICES_DATA).map(service => ({
     title: service.title,
     description: service.shortDescription,

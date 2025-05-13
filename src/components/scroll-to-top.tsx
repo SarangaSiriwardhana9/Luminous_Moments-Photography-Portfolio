@@ -7,7 +7,7 @@ import { ArrowUp } from "lucide-react"
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
-  // Show button when user scrolls down 300px
+ 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -21,7 +21,7 @@ export function ScrollToTop() {
     return () => window.removeEventListener("scroll", toggleVisibility)
   }, [])
 
-  // Scroll to top smoothly
+ 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

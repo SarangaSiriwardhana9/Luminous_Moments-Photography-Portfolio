@@ -23,7 +23,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const slug = params.slug;
+  const slug = (await params).slug;
   const service = SERVICES_DATA[slug];
   
   if (!service) {
@@ -34,13 +34,13 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
   
   return {
-    title: `${service.title} | LK Photography`,
-    description: service.description,
+    title: `${service.title} | LuminousMoments`,
+    description: service.shortDescription,
   };
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
-  const slug = params.slug;
+export default async function ServicePage({ params }: ServicePageProps) {
+  const slug = (await params).slug;
   const service = SERVICES_DATA[slug];
   
   if (!service) {

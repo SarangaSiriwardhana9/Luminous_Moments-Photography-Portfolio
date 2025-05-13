@@ -1,4 +1,4 @@
-// src/app/page.tsx
+ 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/sections/hero-section"
@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      {/* Main Content Sections */}
+ 
       <HeroSection />
       <AboutSection />
       <PhotographerBioSection />

@@ -117,7 +117,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
 export function MasonryGallery({ images, className }: ImageGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   
-  // Group images into columns
+ 
   const columnCount = { mobile: 1, tablet: 2, desktop: 3 }
   const columns: Array<typeof images> = Array.from({ length: columnCount.desktop }, () => [])
   

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { ServiceFeature, IconName } from "@/constants/types";
 
-// Dynamically import icon components
+ 
 const DynamicIcon = dynamic(() => import("@/components/dynamic-icon"), { ssr: false });
 
 interface ServiceFeaturesProps {

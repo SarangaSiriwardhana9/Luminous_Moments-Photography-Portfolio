@@ -5,7 +5,7 @@ import { ImageGallery } from "@/components/image-gallery"
 import { ROUTES, PORTFOLIO_DATA, IMAGES } from "@/constants"
 
 export function PortfolioSection() {
-  // Create an array of featured images using numbered portfolio images
+ 
   const featuredImages = [
     { src: "/images/portfolio-1.jpg", alt: "Wedding Photography", width: 800, height: 600 },
     { src: "/images/portfolio-10.jpg", alt: "Graduation Photography", width: 800, height: 600 },

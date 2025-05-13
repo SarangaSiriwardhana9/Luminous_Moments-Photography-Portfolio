@@ -15,14 +15,14 @@ interface PortfolioPageProps {
 }
 
 export function generateStaticParams() {
-  // Return an array of all possible portfolio category slugs
+ 
   return Object.keys(PORTFOLIO_DATA).map(category => ({
     category: category
   }));
 }
 
 export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
-  const category = params.category;
+  const category = (await params).category;
   const categoryData = PORTFOLIO_DATA[category];
   
   if (!categoryData) {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
   }
   
   return {
-    title: `${categoryData.title} Portfolio | LK Photography`,
+    title: `${categoryData.title} Portfolio | LuminousMoments`,
     description: categoryData.shortDescription,
   };
 }
@@ -46,7 +46,7 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
     notFound();
   }
   
-  // Create the list of categories for navigation
+ 
   const categories = [
     { id: "all", name: "All Categories", href: ROUTES.PORTFOLIO },
     { id: "weddings", name: "Weddings", href: ROUTES.PORTFOLIO_WEDDINGS },
@@ -57,7 +57,7 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
     { id: "corporate", name: "Corporate", href: ROUTES.PORTFOLIO_CORPORATE },
   ];
 
-  // Determine if this is the current category
+ 
   const isCurrentCategory = (id: string) => id === category || (id === "all" && category === undefined);
 
   return (
@@ -137,7 +137,7 @@ export default function PortfolioCategoryPage({ params }: PortfolioPageProps) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                       <div className="flex flex-wrap gap-2 mb-2">
-                        {image.tags.map((tag, tagIndex) => (
+                        {image.tags?.map((tag, tagIndex) => (
                           <span key={tagIndex} className="text-white text-xs font-semibold bg-primary/90 px-2 py-1 rounded-full">
                             {tag}
                           </span>

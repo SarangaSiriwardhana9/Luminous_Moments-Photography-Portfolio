@@ -3,18 +3,20 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "./optimized-image"
 
 export function HeroSection() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background Video/Image */}
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <Image
+        <OptimizedImage
           src="/images/hero-bg.jpg" 
           alt="Professional photography by Hasaranga Suloksha"
           fill
           priority
+          sizes="100vw"
+          quality={85}
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
@@ -50,10 +52,15 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
           >
-            <Button asChild size="lg" className="rounded-full px-8">
+            <Button asChild size="lg" className="rounded-full px-8 text-white">
               <Link href="/portfolio">View Portfolio</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-8 text-white border-white hover:text-white hover:bg-white/20">
+            <Button 
+              asChild 
+              size="lg" 
+              variant="outline" 
+              className="rounded-full px-8 text-white border-white hover:text-white hover:bg-white/20"
+            >
               <Link href="/contact">Book a Session</Link>
             </Button>
           </motion.div>

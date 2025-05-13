@@ -1,256 +1,287 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { motion } from "framer-motion"
+import { Menu, Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
-import { Moon, Sun, Menu, X } from "lucide-react"
-import { useTheme } from "next-themes"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { ROUTES } from "@/constants"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+
+const mainNavItems = [
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { 
+    href: "/services", 
+    label: "Services",
+    children: [
+      {
+        title: "Wedding Photography",
+        href: "/services/wedding-photography",
+        description: "Full coverage of your special day"
+      },
+      {
+        title: "Graduation Photography",
+        href: "/services/graduation-photography",
+        description: "Commemorate your academic achievements"
+      },
+      {
+        title: "Birthday Photography",
+        href: "/services/birthday-photography",
+        description: "Capture the joy of birthday celebrations"
+      },
+      {
+        title: "Engagement Sessions",
+        href: "/services/engagement-photography",
+        description: "Pre-wedding shoots to announce your commitment"
+      },
+      {
+        title: "Corporate Events",
+        href: "/services/corporate-photography",
+        description: "Professional coverage for business functions"
+      },
+      {
+        title: "Cultural Events",
+        href: "/services/cultural-photography",
+        description: "Capturing traditional Sri Lankan ceremonies"
+      }
+    ]
+  },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+]
+
+const NavigationMenuTriggerStyle = cn(
+  "group inline-flex h-auto w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:text-primary data-[state=open]:text-primary"
+);
 
 export function Header() {
-  const { setTheme, theme } = useTheme()
-  const [scrolled, setScrolled] = useState(false)
-  
-  useEffect(() => {
+  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const { theme, setTheme } = useTheme()
+
+  React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      setIsScrolled(window.scrollY > 20)
     }
+    
+    // Check scroll position immediately on mount
+    handleScroll()
     
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <header className={cn(
-      "w-full fixed top-0 z-50 transition-all duration-300",
-      scrolled ? "bg-background/80 backdrop-blur-md py-3 shadow-md" : "bg-transparent py-6"
-    )}>
-      <div className="container flex items-center justify-between">
-        <Link href={ROUTES.HOME} className="font-bold text-2xl tracking-tight">
-          Luminous <span className="text-primary">Moments</span>
-        </Link>
-        
-        <div className="hidden md:flex items-center gap-6">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href={ROUTES.HOME}>Home</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Portfolio</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_WEDDINGS} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Weddings</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Stunning captures of Sri Lankan wedding ceremonies
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_GRADUATIONS} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Graduations</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Capturing academic milestones and achievements
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_BIRTHDAYS} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Birthdays</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Birthday celebrations from kids to milestone events
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_ENGAGEMENTS} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Engagements</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Beautiful pre-wedding and engagement photoshoots
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_CULTURAL} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Cultural Events</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Capturing the rich heritage of Sri Lankan ceremonies
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.PORTFOLIO_CORPORATE} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Corporate</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Professional coverage of corporate events and functions
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_WEDDING} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Wedding Photography</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Full coverage of your special day
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_GRADUATION} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Graduation Photography</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Commemorate your academic achievements
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_BIRTHDAY} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Birthday Photography</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Capture the joy of birthday celebrations
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_ENGAGEMENT} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Engagement Sessions</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Pre-wedding shoots to announce your commitment
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_CORPORATE} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Corporate Events</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Professional coverage for business functions
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href={ROUTES.SERVICES_PRICING} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Pricing & Packages</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            View our complete pricing and package details
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href={ROUTES.ABOUT}>About</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href={ROUTES.CONTACT}>Contact</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-          
-          <Button asChild>
-            <Link href={ROUTES.CONTACT}>Book Now</Link>
-          </Button>
-        </div>
-        
-        {/* Mobile Menu */}
-        <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled || pathname !== "/"
+          ? "bg-background/80 backdrop-blur-lg shadow-sm"
+          : "bg-transparent"
+      )}
+    >
+      <div className="container">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                Luminous<span className="text-primary">Moments</span>
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {mainNavItems.map((item, index) => (
+                  <NavigationMenuItem key={item.href}>
+                    {item.children ? (
+                      <>
+                        <NavigationMenuTrigger
+                          className={cn(
+                            NavigationMenuTriggerStyle,
+                            pathname.startsWith(item.href) ? "text-primary" : (!isScrolled && pathname === "/" ? "text-white" : "text-muted-foreground")
+                          )}
+                        >
+                          {item.label}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                            {item.children.map((child) => (
+                              <li key={child.href}>
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    href={child.href}
+                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    <div className="text-sm font-medium leading-none">{child.title}</div>
+                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                      {child.description}
+                                    </p>
+                                  </Link>
+                                </NavigationMenuLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "text-sm font-medium transition-colors hover:text-primary relative py-2 px-4",
+                          pathname === item.href
+                            ? "text-primary"
+                            : (!isScrolled && pathname === "/" ? "text-white hover:text-white/90" : "text-muted-foreground")
+                        )}
+                      >
+                        {item.label}
+                        {pathname === item.href && (
+                          <motion.div
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                            layoutId="underline"
+                          />
+                        )}
+                      </Link>
+                    )}
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+            
+            {/* Theme Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "mr-2",
+                !isScrolled && pathname === "/" && "text-white hover:text-white/90"
+              )}
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
             </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[385px]">
-            <nav className="flex flex-col gap-4 mt-8">
-              <Link href={ROUTES.HOME} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_WEDDINGS} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Weddings
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_GRADUATIONS} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Graduations
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_BIRTHDAYS} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Birthdays
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_ENGAGEMENTS} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Engagements
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_CULTURAL} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Cultural Events
-              </Link>
-              <Link href={ROUTES.PORTFOLIO_CORPORATE} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Corporate
-              </Link>
-              <Link href={ROUTES.ABOUT} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                About
-              </Link>
-              <Link href={ROUTES.SERVICES} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Services
-              </Link>
-              <Link href={ROUTES.CONTACT} className="px-3 py-2 text-lg hover:text-primary transition-colors">
-                Contact
-              </Link>
-              <div className="flex justify-between items-center mt-4 px-3">
-                <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                  <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">Toggle theme</span>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Button 
+                asChild
+                variant={!isScrolled && pathname === "/" ? "outline" : "default"}
+                className={!isScrolled && pathname === "/" ? "border-white text-white hover:bg-white hover:text-black" : ""}
+              >
+                <Link href="/contact">Book Now</Link>
+              </Button>
+            </motion.div>
+          </nav>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center gap-2">
+            {/* Theme Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-9 w-9">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
                 </Button>
-                <Button asChild>
-                  <Link href={ROUTES.CONTACT}>Book Now</Link>
-                </Button>
-              </div>
-            </nav>
-          </SheetContent>
-        </Sheet>
+              </SheetTrigger>
+              <SheetContent className="w-[300px] px-6">
+                <SheetTitle className="text-xl font-bold mb-6">Menu</SheetTitle>
+                <nav className="flex flex-col space-y-6">
+                  {mainNavItems.map((item, index) => (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "text-lg font-medium transition-colors hover:text-primary",
+                          pathname === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                      {item.children && (
+                        <motion.div 
+                          className="pl-6 space-y-4 border-l border-border"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                        >
+                          {item.children.map((child, childIndex) => (
+                            <motion.div
+                              key={child.href}
+                              initial={{ opacity: 0, x: 10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: (index * 0.1 + childIndex * 0.05 + 0.3) }}
+                            >
+                              <Link
+                                href={child.href}
+                                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                              >
+                                {child.title}
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  ))}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: mainNavItems.length * 0.1 + 0.3 }}
+                  >
+                    <Button asChild className="mt-6 w-full">
+                      <Link href="/contact">Book Now</Link>
+                    </Button>
+                  </motion.div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
       </div>
     </header>
   )

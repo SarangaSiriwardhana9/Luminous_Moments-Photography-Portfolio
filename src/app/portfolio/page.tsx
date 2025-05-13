@@ -1,18 +1,19 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { IMAGES, ROUTES } from "@/constants";
+import { IMAGES, ROUTES, PORTFOLIO_DATA } from "@/constants";
+import { GalleryImage } from "@/constants/types";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Portfolio | LK Photography",
+  title: "Portfolio | LuminousMoments",
   description: "Browse our portfolio of photography work from across Sri Lanka including weddings, graduations, birthdays, and more.",
 };
 
 export default function PortfolioPage() {
-  // Portfolio categories
+ 
   const categories = [
     { name: "All", href: ROUTES.PORTFOLIO },
     { name: "Weddings", href: ROUTES.PORTFOLIO_WEDDINGS },
@@ -23,94 +24,10 @@ export default function PortfolioPage() {
     { name: "Corporate", href: ROUTES.PORTFOLIO_CORPORATE },
   ];
 
-  // Portfolio gallery images (expanded from the highlights)
-  const portfolioImages = [
-    {
-      src: IMAGES.PORTFOLIO_1,
-      alt: "Traditional Sri Lankan wedding ceremony",
-      category: "Weddings",
-      width: 800,
-      height: 1200
-    },
-    {
-      src: IMAGES.PORTFOLIO_2,
-      alt: "University graduation ceremony",
-      category: "Graduations",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.PORTFOLIO_3,
-      alt: "Couple portrait in traditional attire",
-      category: "Engagements",
-      width: 800,
-      height: 1100
-    },
-    {
-      src: IMAGES.PORTFOLIO_4,
-      alt: "Child's birthday celebration",
-      category: "Birthdays",
-      width: 800,
-      height: 900
-    },
-    {
-      src: IMAGES.PORTFOLIO_5,
-      alt: "Corporate event photography",
-      category: "Corporate",
-      width: 800,
-      height: 1200
-    },
-    {
-      src: IMAGES.PORTFOLIO_6,
-      alt: "Cultural celebration with traditional dancers",
-      category: "Cultural",
-      width: 800,
-      height: 1000
-    },
-    // Additional images for a more comprehensive portfolio
-    {
-      src: IMAGES.SERVICE_WEDDING,
-      alt: "Bride and groom during wedding ceremony",
-      category: "Weddings",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.SERVICE_GRADUATION,
-      alt: "Graduate celebrating with family",
-      category: "Graduations",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.SERVICE_BIRTHDAY,
-      alt: "Birthday party celebration",
-      category: "Birthdays",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.SERVICE_ENGAGEMENT,
-      alt: "Engagement photoshoot at beach",
-      category: "Engagements",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.SERVICE_CORPORATE,
-      alt: "Corporate team building event",
-      category: "Corporate",
-      width: 800,
-      height: 1000
-    },
-    {
-      src: IMAGES.SERVICE_CULTURAL,
-      alt: "Traditional Sri Lankan dance performance",
-      category: "Cultural",
-      width: 800,
-      height: 1000
-    },
-  ];
+ 
+  const allPortfolioImages = Object.values(PORTFOLIO_DATA).reduce<GalleryImage[]>((acc, category) => {
+    return [...acc, ...(category.images || [])];
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -156,10 +73,10 @@ export default function PortfolioPage() {
         </section>
 
         {/* Portfolio Gallery */}
-        <section className="py-16">
+        <section className="py-12">
           <div className="container">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {portfolioImages.map((image, index) => (
+              {allPortfolioImages.map((image: GalleryImage, index: number) => (
                 <div key={index} className="group relative overflow-hidden rounded-lg shadow-md h-[300px] md:h-[350px]">
                   <Image
                     src={image.src}
@@ -168,9 +85,13 @@ export default function PortfolioPage() {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <span className="text-white text-sm font-semibold bg-primary/90 px-2 py-1 rounded-full inline-block w-fit mb-2">
-                      {image.category}
-                    </span>
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {image.tags?.map((tag: string, tagIndex: number) => (
+                        <span key={tagIndex} className="text-white text-xs font-semibold bg-primary/90 px-2 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                     <p className="text-white text-lg font-medium">{image.alt}</p>
                   </div>
                 </div>

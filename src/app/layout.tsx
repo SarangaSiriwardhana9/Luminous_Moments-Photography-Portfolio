@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
-// Font configuration
+ 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadata
+ 
 export const metadata: Metadata = {
   title: "Luminous Moments | Sri Lankan Wedding Photography",
   description: "Capturing the beauty and elegance of Sri Lankan weddings with stunning photography",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
 };
 
-// Root layout
+ 
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,9 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Remove the manual <head /> tag - Next.js will handle this */}
+ 
       <body
-        suppressHydrationWarning // Add this to suppress hydration warnings on the body too
+        suppressHydrationWarning  
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           geistSans.variable,
