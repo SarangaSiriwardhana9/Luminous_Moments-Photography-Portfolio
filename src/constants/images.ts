@@ -1,6 +1,7 @@
 export const IMAGES = {
   // Hero images
   HERO_BG: '/images/hero-bg1.jpg',
+  HERO_MOBILE: '/images/hero-bg_mobile.jpg',
 
   // About images
   ABOUT_PHOTOGRAPHER: '/images/about-photographer.jpg',

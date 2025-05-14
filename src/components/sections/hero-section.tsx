@@ -5,20 +5,38 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { OptimizedImage } from "@/components/optimized-image"
 import { IMAGES, ROUTES } from "@/constants"
+import { useEffect, useState } from "react"
 
 export function HeroSection() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    // Initial check
+    checkMobile()
+    
+    // Add event listener
+    window.addEventListener('resize', checkMobile)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <OptimizedImage
-          src={IMAGES.HERO_BG}
+          src={isMobile ? IMAGES.HERO_MOBILE : IMAGES.HERO_BG}
           alt="Professional photography by Hasaranga Suloksha"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/50 md:from-black/60 md:to-black/30" />
       </div>
       
       {/* Content */}
@@ -41,7 +59,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-white max-w-2xl mx-auto"
           >
             Professional photography services for weddings, graduations, birthdays, and special events across Sri Lanka by Hasaranga Suloksha.
           </motion.p>
@@ -87,4 +105,4 @@ export function HeroSection() {
       </div>
     </div>
   )
-} 
+}
