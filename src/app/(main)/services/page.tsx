@@ -37,7 +37,7 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-primary/10 text-primary text-xs font-medium rounded-full px-3 py-1 inline-block mb-2">
+                    <div className="bg-primary-foreground text-primary text-xs font-medium rounded-full px-3 py-1 inline-block mb-2">
                       Starting at {service.price}
                     </div>
                     <h3 className="text-xl font-bold text-white">{service.title}</h3>
