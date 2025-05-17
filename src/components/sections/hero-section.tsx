@@ -34,9 +34,10 @@ export function HeroSection() {
           alt="Professional photography by Hasaranga Suloksha"
           fill
           priority
-          className="object-cover"
+          className={`object-cover ${isMobile ? "object-[center_top]" : "object-center"}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/50 md:from-black/60 md:to-black/30" />
+        {/* Darker overlay for mobile */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/70 md:from-black/60 md:to-black/30" />
       </div>
       
       {/* Content */}

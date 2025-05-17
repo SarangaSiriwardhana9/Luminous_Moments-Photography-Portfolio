@@ -47,7 +47,7 @@ const mainNavItems = [
       },
       {
         title: "Engagement Sessions",
-        href: "/services/engagement-photography",
+        href: "/services/engagement-shoots",
         description: "Pre-wedding shoots to announce your commitment"
       },
       {
@@ -57,7 +57,7 @@ const mainNavItems = [
       },
       {
         title: "Cultural Events",
-        href: "/services/cultural-photography",
+        href: "/services/cultural-ceremonies",
         description: "Capturing traditional Sri Lankan ceremonies"
       }
     ]
