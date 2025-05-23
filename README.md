@@ -3,7 +3,6 @@
 A modern, responsive photography portfolio website built with Next.js 14, showcasing professional photography services across Sri Lanka. The platform features a beautiful UI with optimized image loading, smooth animations, and a seamless user experience.
 
 
-![luminos](https://github.com/user-attachments/assets/f25640e3-1e76-4fda-8a2a-e083a16ab986)
 ![luminos](https://github.com/user-attachments/assets/c01a4314-2ea5-4a8a-825a-d55e6b8258b9)
 
 
