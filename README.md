@@ -37,7 +37,7 @@ A modern, responsive photography portfolio website built with Next.js 14, showca
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/luminous-moments.git
+git clone https://github.com/SarangaSiriwardhana9/photography-portfolio.git
 cd luminous-moments
 ```
 
