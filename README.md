@@ -2,7 +2,9 @@
 
 A modern, responsive photography portfolio website built with Next.js 14, showcasing professional photography services across Sri Lanka. The platform features a beautiful UI with optimized image loading, smooth animations, and a seamless user experience.
 
-![Luminous Moments](public/images/hero-bg1.jpg)
+
+![luminos](https://github.com/user-attachments/assets/f25640e3-1e76-4fda-8a2a-e083a16ab986)
+
 
 ## 🌟 Features
 
