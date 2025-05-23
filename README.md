@@ -116,12 +116,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📞 Contact
 
-For any inquiries or support, please contact:
-- Email: your-email@example.com
-- Website: [luminousmoments.com](https://luminousmoments.com)
 
 ---
 
-Built with ❤️ by [Your Name]
+Built with ❤️ by Saranga Siriwardhana
