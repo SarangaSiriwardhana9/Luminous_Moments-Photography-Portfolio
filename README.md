@@ -76,19 +76,6 @@ This project can be easily deployed using platforms like:
 
 ## 📸 Credits
 
-Photography by **Hasaranga**  
-Design inspired by modern minimalism with subtle Sri Lankan flair.  
-All images used are either licensed or custom-generated.
-
----
-
-## 📬 Contact
-
-For project collaboration, booking inquiries, or custom builds:
-
-📧 hasaranga@example.com  
-📷 [Instagram](https://instagram.com/hasaranga.photography)
-
 ---
 
 ## 📝 License
